@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NITI Smriti</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="wrap">
+        <a class="wordmark" href="#/" aria-label="NITI Smriti home">
+          <span class="hi" lang="hi">नीति स्मृति</span><span class="en">NITI Smriti</span>
+        </a>
+        <form class="top-search" role="search" id="topSearch">
+          <label class="sr-only" for="q">Search</label>
+          <input id="q" type="search" data-i18n-ph="searchPh" placeholder="Search by topic, Division, State or file no.">
+          <label class="sr-only" for="scope">Search in</label>
+          <select id="scope">
+            <option data-i18n="scopeAll">All of Smriti</option>
+            <option data-i18n="scopeMine">My Division</option>
+            <option data-i18n="scopePub">Published only</option>
+          </select>
+          <button type="submit"><span data-i18n="find">Find</span></button>
+        </form>
+        <div class="top-actions">
+          <button class="lang" id="langBtn" type="button" aria-label="Switch language">हिंदी</button>
+          <button class="icon-btn" type="button" aria-label="Notifications" data-href="#/notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="dot"></span>
+          </button>
+          <button class="avatar" type="button" aria-label="Your profile" data-href="#/profile" id="avatar">AR</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mainnav" aria-label="Main">
+      <div class="wrap">
+        <div class="navitem"><a class="navbtn" href="#/" data-route="home" data-i18n="home">Home</a></div>
+        <div class="navitem">
+          <button class="navbtn" type="button" aria-expanded="false"><span data-i18n="divisions">Divisions</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dropdown"><div class="wrap"><div class="mega" id="megaDivisions"></div></div></div>
+        </div>
+        <div class="navitem">
+          <button class="navbtn" type="button" aria-expanded="false"><span data-i18n="categories">Document categories</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dropdown"><div class="wrap"><div class="menu-cols" id="megaCats"></div></div></div>
+        </div>
+        <div class="navitem">
+          <button class="navbtn" type="button" aria-expanded="false"><span data-i18n="contribute">Contribute</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dropdown"><div class="wrap"><div class="menu-cols">
+            <div class="menu-col"><ul>
+              <li><a href="#/upload">Upload a document</a><p>Add a report, note or minutes with its details</p></li>
+              <li><a href="#/uploads">My uploads</a><p>Your documents, versions and their status</p></li>
+            </ul></div>
+            <div class="menu-col"><ul>
+              <li><a href="#/uploads?tab=library">Division library</a><p>Everything your Divisions have deposited</p></li>
+              <li><a href="#/queue">Verification queue</a><p>Uploads waiting for you to verify</p></li>
+              <li><a href="#/help?s=protocol">Upload protocol</a><p>What to upload, when, and at which access level</p></li>
+            </ul></div>
+          </div></div></div>
+        </div>
+        <div class="navitem">
+          <button class="navbtn" type="button" aria-expanded="false"><span data-i18n="tools">Tools</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dropdown"><div class="wrap"><div class="menu-cols">
+            <div class="menu-col"><ul>
+              <li><a href="#/ask">Ask Smriti</a><p>Ask a question, get an answer with sources</p></li>
+              <li><a href="#/check">Check a draft</a><p>Find figures and positions that differ from earlier NITI work</p></li>
+            </ul></div>
+            <div class="menu-col"><ul>
+              <li><a href="#/handover">Handover brief</a><p>Past work, pending items and whom to consult</p></li>
+            </ul></div>
+          </div></div></div>
+        </div>
+        <div class="navitem"><a class="navbtn" href="#/help" data-route="help" data-i18n="help">Help</a></div>
+        <span class="whoami" id="whoami"></span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="view" tabindex="-1"></main>
+
+  <div class="drawer-scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-label="Quick view" hidden></aside>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div style="margin-bottom:8px;font-weight:600">Access levels</div>
+        <div class="legend">
+          <div><span class="badge Public">Public</span> Released outputs</div>
+          <div><span class="badge NITI-wide">NITI-wide</span> All NITI officers</div>
+          <div><span class="badge SMD">SMD</span> Officers of the Division</div>
+          <div><span class="badge Restricted">Restricted</span> Named officers only</div>
+        </div>
+      </div>
+      <div class="proto">Prototype for review. Documents, names and figures are illustrative.</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
